@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+
+#videoinbackground{position: relative;height:1088px;z-index:1}
+#myVideo{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    }
+#videoinbackground h1{position: absolute;
+    left: 122px;
+    top: 139px;
+    z-index: 2;
+    color: #fff;
+    font-size: 80px;
+    FONT-WEIGHT: 1000;
+    }
+#videoinbackground h3{    position: absolute;
+    left: 155px;
+    top: 316px;
+    z-index: 2;
+    color: #fff;
+    }
+#videoinbackground div{
+position:absolute;
+left: 735px;
+bottom: 370px;
+z-index:2;
+    }
+    
+#videoinbackground div button{
+	width: 170px;
+    height: 70px;
+    font-size: 25px;
+    FONT-WEIGHT: 800;
+}
+
+#videoinbackground div button:first-child{margin-right:125px}
+
+#asd1 h1{font-weight:bold}
+.navbar a{font-weight:bold;color:white}
+.navbar-nav .nav-link{color:white}
+
+
+#asd2{position: relative;z-index:3}
+#asd2 h1{
+position: absolute;
+    left: 146px;
+    top: 74px;
+    z-index: 2;
+    color: #fff;
+    font-size: 140px;
+    FONT-WEIGHT: 600;	
+}
+#asd2 h2{
+    position: absolute;
+    left: 184px;
+    top: 293px;
+    z-index: 2;
+    color: #fff;
+    font-size: 40px;
+    FONT-WEIGHT: 300;	
+}
+#asd2 .st{
+	position: absolute;
+    left: 184px;
+    top: 368px;
+    z-index: 2;
+    color: #fff;
+}
+#asd2 .nd{
+	position: absolute;
+    left: 389px;
+    top: 405px;
+    z-index: 2;
+    color: #fff;
+
+}
+#asd2 a{
+position:absolute;left: 324px;
+    bottom: 328px;z-index:2;
+    }
+
+#asd2 a{
+	width: 200px;
+    height: 70px;
+    font-size: 30px;
+    FONT-WEIGHT: 600;
+}

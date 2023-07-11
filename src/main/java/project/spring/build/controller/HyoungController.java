@@ -24,7 +24,7 @@ public class HyoungController {
 	@Autowired
 	private ApiExplorer api;
 		
-	//Ã¤¿ëÁ¤º¸ »çÀÌÆ® (½ÇÁ¦ »ç¿ëÇÒ ÆÄÀÏ)
+	//ì±„ìš©ì •ë³´ ì‚¬ì´íŠ¸ (ì‹¤ì œ ì‚¬ìš©í•  íŒŒì¼)
 	@RequestMapping("career")
 	public String apiinkorea(Model model) throws Exception{
 		List datalist = null;
@@ -40,19 +40,19 @@ public class HyoungController {
 	
 	@RequestMapping("conmap")
 	public String maptocon(Model model) {
-		model.addAttribute("key","5258cbeb3b50db04d8cf5e5e7d6eb80c");		
+		model.addAttribute("key","ì¹´ì¹´ì˜¤ í‚¤");		
 		return "/map/conmap";
 	}
 	
 	@RequestMapping("demap")
 	public String maptode(Model model) {
-		model.addAttribute("key","5258cbeb3b50db04d8cf5e5e7d6eb80c");		
+		model.addAttribute("key","ì¹´ì¹´ì˜¤ í‚¤");		
 		return "/map/demap";
 	}
 	
 	@RequestMapping("main")
 	public String main(Model model) {
-	model.addAttribute("key","5258cbeb3b50db04d8cf5e5e7d6eb80c");	
+	model.addAttribute("key","ì¹´ì¹´ì˜¤ í‚¤");	
 		return "/main/MainPage";
 	}
 	

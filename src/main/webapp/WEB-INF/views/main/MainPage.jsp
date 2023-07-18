@@ -9,16 +9,16 @@
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" >
 <link href="/build/resources/css/style.css" rel="stylesheet">
+
+<!--  로딩 css -->
+<link href="/build/resources/css/load.css" rel="stylesheet">
+
 <!-- kakao 로그인 / 로그아웃 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
-
 .abc{	justify-content: flex-end; }
-    
-  
-
 </style>
 <body>
 
@@ -63,13 +63,22 @@
         </video>
         <h1>기상건축도우미</h1>
         <h3>기상데이터를 활용한 건축도우미 서비스, 간편하게 카카오로 이용해보세요.</h3>
+        
+        <div id="new">
+        <button class="btn btn-danger" style="width: 180px; height: 70px; font-size: 30px;" onclick="window.open('/build/developer', 'Child', 'width=550, height=500, top=50, left=50')">개발환경</button>
+        </div>
+        
         <div>
+        <a class="btn btn-warning" href="#asd1" style="width: 173px; height: 60px; font-size: 22px;"><strong>사이트 가이드</strong></a>
+        <a class="btn btn-success" href="#asd2" style="width: 173px; height: 60px; font-size: 25px;"><strong>채용 정보</strong></a>
+        <br/><br/>
 <c:if test="${sessionScope.Email == null}">
 <a id="kakao-login-btn"></a>
 </c:if>
-<c:if test="${sessionScope.Email != null}">	        
-        <button class="btn btn-primary mr-4" onclick="location='/build/conmap'">시공</button>
-        <button class="btn btn-primary" onclick="location='/build/demap'">설계</button>        
+<c:if test="${sessionScope.Email != null}">
+        <button class="btn btn-primary pr-4" onclick="location='/build/conmap'">시공</button>
+        <button class="btn btn-primary" onclick="location='/build/demap'">설계</button><br /><br />
+        <a class="btn btn-secondary" href="/build/conplanlist" style="width: 347px; height: 60px; font-size: 25px;"><strong>계획서 보러가기</strong></a>        
 </c:if>        
 	</div>
 </section>
@@ -124,7 +133,7 @@
                            // $("#kakao-login-btn").css("display","none");
                            // $("#outforlog").css("display","block");
                         	location.reload();
-                        }
+                        }	
                      });
         		},
         		fail: function(error) {
@@ -175,24 +184,26 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/build/resources/upload/mainimg/con1.PNG" class="d-block w-100" alt="...">
+      <img src="/build/resources/upload/mainimg/conf1.PNG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>카카오맵을 이용하여 시공할 지역을 선택하세요.</h5>
         <p>오른쪽 지역버튼을 사용하면 간편하게 시군구 위치로 이동해줍니다.</p>
+        <p>검색 기능을 통해 원하는 지역을 빠르게 찾을 수 있습니다.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/build/resources/upload/mainimg/con2.PNG" class="d-block w-100" alt="...">
+      <img src="/build/resources/upload/mainimg/conf2.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>시공할 지역을 선택하고 이동하면 날짜와 공정을 설정해주는 페이지로 이동합니다.</h5>
         <p>원하는 날짜 아래에 텍스트 박스에 공정을 입력하고 버튼을 누르면 안전지침을 정보를 제공합니다.</p>
+        <p>안전 지침으로 이동하면 메모를 해서 자신의 계획서에 저장할 수 있습니다.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="/build/resources/upload/mainimg/con3.PNG" class="d-block w-100" alt="...">
+      <img src="/build/resources/upload/mainimg/conf3.PNG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>기상데이터를 활용해 건축물의 안전지침이 나타납니다.</h5>
-        <p>기상API를 사용해서 가져온 데이터로 기상에 맞는 안전 지침을 제공합니다.</p>
+        <h5>저장하신 계획서는 좌측 사이드바를 통해 확인이 가능합니다.</h5>
+        <p>수정을 통해 계획을 완료했는지 수정할 수 있으며, 메모한 내용을 변경할 수 있습니다.</p>
       </div>
     </div>
   </div>
@@ -235,24 +246,26 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="8000">
-      <img src="/build/resources/upload/mainimg/de1.PNG" class="d-block w-100" alt="...">
+      <img src="/build/resources/upload/mainimg/def1.PNG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>카카오맵을 이용하여 설계할 지역을 선택하세요.</h5>
         <p>오른쪽 지역버튼을 사용하면 간편하게 시군구 위치로 이동해줍니다.</p>
+        <p>검색 기능을 통해 원하는 지역을 빠르게 찾을 수 있습니다.</p>
       </div>
     </div>
     <div class="carousel-item"  data-bs-interval="3000">
-      <img src="/build/resources/upload/mainimg/de2.PNG" class="d-block w-100" alt="...">
+      <img src="/build/resources/upload/mainimg/def2.PNG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>설계할 지역을 선택하면, 해당 지역의 평균기상 데이터가 나타납니다.</h5>
-        <p>각각의 지역의 평균기상 데이터는 기상청 데이터를 활용하였습니다.</p>
+        <p>설계 지침 버튼을 누르면, Chat-GPT를 사용하여 설계 지침을 볼 수 있습니다.</p>
+        <p>메모를 통해 현재 수집한 데이터를 자신의 계획 현황에 저장할 수 있습니다.</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="3000">
-      <img src="/build/resources/upload/mainimg/de3.PNG" class="d-block w-100" alt="...">
+      <img src="/build/resources/upload/mainimg/def3.PNG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>설계 지침 버튼을 누르면, Chat-GPT를 사용하여 설계 지침을 볼 수 있습니다.</h5>
-        <p>다른 설계 지침을 원하는 경우, 다시 한번 설계 지침 버튼을 누르시면 다시 설정해줍니다.</p>
+        <h5>저장된 계획은 좌측 사이드바를 통해 확인할 수 있습니다.</h5>
+        <p>수정을 통해 자신이 적은 메모를 변경할 수 있습니다.</p>
       </div>
     </div>
   </div>
@@ -280,11 +293,34 @@
   <h4 class="st"> 더 많은 채용정보를 희망하시면 최신 정보 더보기를,</h4>
   <h4 class="nd"> 자세한 정보를 보고 싶으시다면 희망하는 채용 정보를 눌러 원하는 정보를 체험하실 수 있습니다. </h4>
   
-  <a class="btn btn-lg btn-primary" role="button" onclick="location='/build/career'">보러가기</a>
+  <a href="/build/career" class="btn btn-lg btn-primary" role="button" onclick="">보러가기</a>
   
   
   </section>
-    
+<%-- lo 스크립트   --%>
+<div id="loadforall" style="display:none" >
+<div class="loading-container mainload" style="display:none; width: 700px; height: 270px;" id="loading-all">
+    <div class="loading" ></div>
+    <div id="loading-text">loading</div>
+</div>
+</div>
+<script>
+window.onbeforeunload = function () { 
+	$('#loading-all').show();
+	$('#loadforall').show();
+	}  
+//현재 페이지에서 다른 페이지로 넘어갈 때 표시해주는 기능
+$(window).load(function () {          //페이지가 로드 되면 로딩 화면을 없애주는 것
+$('#loading-all').hide();
+$('#loadforall').hide();
+      });
+</script>
+
+<%-- load --%>  
+
+
+   
+      
   </div>
 </main>
 <script>

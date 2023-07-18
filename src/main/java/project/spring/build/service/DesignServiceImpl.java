@@ -46,7 +46,7 @@ public class DesignServiceImpl implements DesignService{
 	private class WeatherAPI{
 		public String call(String sdf,String x , String y) throws IOException {
 		        StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
-		        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=6zZfFkasEkgLqsokGB8s5EZ7zgXxdShQ7hMidHRXBSW9fIKQ2LscXjWwOBmkp%2FABrBLbxecMfVS1x7yh9653DQ%3D%3D"); /*Service Key*/
+		        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=키 넣는 곳"); /*Service Key : */
 		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
 		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
 		        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
@@ -54,18 +54,19 @@ public class DesignServiceImpl implements DesignService{
 		        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); /*06시 발표(정시단위) */
 		        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode(x, "UTF-8")); /*예보지점의 X 좌표값*/
 		        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode(y, "UTF-8")); /*예보지점의 Y 좌표값*/
+		        
 		        return urlBuilder.toString();
+		        
 		}
 	}
 	
 	private class ChatGPT {
 	    public String chatGPT(String text) throws Exception {
-	    			System.out.println(text);
+	    			//System.out.println(text);
 	    	        String url = "https://api.openai.com/v1/chat/completions";
 	    	        HttpClient httpClient = HttpClients.createDefault();
 	    	        HttpPost httpPost = new HttpPost(url);
-	    	        httpPost.setHeader(HttpHeaders.AUTHORIZATION, "Bearer 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");
-	    	        
+	    	        httpPost.setHeader(HttpHeaders.AUTHORIZATION, "Bearer '키 넣는 곳'");
 	    	        StringEntity requestEntity = new StringEntity(
 	    	                "{ \"temperature\": 0.6, \"messages\": [{\"role\": \"user\", \"content\": \""+text+"\"}], \"max_tokens\": 2000 ,\"model\": \""+"gpt-3.5-turbo"+"\" }",
 	    	                ContentType.APPLICATION_JSON
@@ -133,7 +134,7 @@ public class DesignServiceImpl implements DesignService{
 		String gpt = null;
 	    try {
 	        StringBuilder promptBuilder = new StringBuilder();
-	        promptBuilder.append("(1000토큰 이내) 아래에 있는 오늘의 날씨와 공정을 조건으로 건축물 건설에 대한 안전 지침을 제공해주세요.")
+	        promptBuilder.append("(1000토큰 이내) 아래에 있는 오늘의 날씨와 공정을 조건으로 건축물 건설에 대한 안전 지침을 제공해줘. 해당공정이 날씨에 적합한지도 제공해줘")
 	                .append(" 강수 확률: ").append(session.getAttribute("POP"+num))
 	                .append(", 최저 기온: ").append(session.getAttribute("TMN"+num))
 	                .append(", 최고 기온: ").append(session.getAttribute("TMX"+num))
@@ -142,7 +143,7 @@ public class DesignServiceImpl implements DesignService{
 	        String prompt = promptBuilder.toString();
 
 	        String response = chat.chatGPT(prompt);
-	        System.out.println(response);
+	        //System.out.println(response);
 	        JSONObject jsonResponse = new JSONObject(response);
 	        JSONArray choices = jsonResponse.getJSONArray("choices");
 	        if (choices.length() > 0) {
@@ -153,16 +154,16 @@ public class DesignServiceImpl implements DesignService{
 	        e.printStackTrace();
 	    }
 	    
-	    System.out.println(gpt);
+	    //System.out.println(gpt);
 	    return gpt;
 	}
-	
+	@Override
 	public String chatGPTFeature(String feature) throws Exception {
 		ChatGPT chat = new ChatGPT();
 		String gpt = null;
 	    try {
 	        String response = chat.chatGPT("다음 내용을 참고로 건축설계에 대한 지침좀 해줘 : " + feature);
-	        System.out.println(response);
+	        //System.out.println(response);
 	        JSONObject jsonResponse = new JSONObject(response);
 	        JSONArray choices = jsonResponse.getJSONArray("choices");
 	        if (choices.length() > 0) {
@@ -172,14 +173,14 @@ public class DesignServiceImpl implements DesignService{
 	    } catch (URISyntaxException e) {
 	        e.printStackTrace();
 	    }
-	    System.out.println(gpt);
+	    //System.out.println(gpt);
 	    return gpt;
 	}
 	
 	@Override
 	public String getNum(String a, String b) {
-		System.out.println(a.trim());
-		System.out.println(b.trim());
+		//System.out.println(a.trim());
+		//System.out.println(b.trim());
 		String designNum = mapper.getNum(a.trim(),b.trim());
 		String feature = mapper.feature(designNum);
 		return feature;

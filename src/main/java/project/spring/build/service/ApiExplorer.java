@@ -22,16 +22,18 @@ import project.spring.build.component.ApiDTO;
 
 @Service
 public class ApiExplorer {
+	// comperunte
+	// rBnehqdrvX0YOR9pHH95LE%2BQeeTQdBAq1I5yxLO2EoLWxXf8UOSYk88ts0kE3wPcoG9adu3IYTJ625RMftvGlw%3D%3D : ÀÎÁõÅ°
 	// http://www.cid.or.kr/job/openApi/service/getJobOpenInfoList.do
 	public List apimethod() throws Exception {
 		StringBuilder urlBuilder = new StringBuilder("http://www.cid.or.kr/job/openApi/service/getJobOpenInfoList.do"); /*URL*/
-	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=ê³µê³µapií‚¤"); /*Service Key*/
+	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=Å° ³Ö´Â °÷"); /*Service Key*/
 	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("12", "UTF-8"));
 	    URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + conn.getResponseCode());
+		//System.out.println("Response code: " + conn.getResponseCode());
 		BufferedReader rd;
 		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 			rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
@@ -57,16 +59,16 @@ public class ApiExplorer {
 		  builder    =  factory.newDocumentBuilder();
 		  document = builder.parse(new InputSource(new StringReader(tag)));
 		  
-		  NodeList numlist = document.getElementsByTagName("cmpnyJoSeq"); // ì±„ìš©ì •ë³´ë²ˆí˜¸
-		  NodeList companylist = document.getElementsByTagName("cmpnyNm"); // ì±„ìš©ì •ë³´íšŒì‚¬
-		  NodeList titlelist = document.getElementsByTagName("empmnSj"); // ì±„ìš©ì •ë³´í™ë³´ëª… : Title
-		  NodeList wagelist = document.getElementsByTagName("wageAmount"); // í¬ë§ìž„ê¸ˆì¡°ê±´(ì›)
-		  NodeList careerlist = document.getElementsByTagName("careerYear"); // ìµœì €ê²½ë ¥(ë…„)
-		  NodeList arealist = document.getElementsByTagName("workArea"); // ê·¼ë¬´ì§€ì—­
-		  NodeList area1list = document.getElementsByTagName("workAreaAdres1"); // ê·¼ë¬´ì§€ì—­ 1
-		  NodeList area2list = document.getElementsByTagName("workAreaAdres2"); // ê·¼ë¬´ì§€ì—­ 2
-		  NodeList insertdatelist = document.getElementsByTagName("rgsde"); // í•´ë‹¹ ì •ë³´ ë“±ë¡ì¼
-		  NodeList LHlist = document.getElementsByTagName("lhCntrwkAt"); // LHê³µì‚¬ì—¬ë¶€
+		  NodeList numlist = document.getElementsByTagName("cmpnyJoSeq"); // Ã¤¿ëÁ¤º¸¹øÈ£
+		  NodeList companylist = document.getElementsByTagName("cmpnyNm"); // Ã¤¿ëÁ¤º¸È¸»ç
+		  NodeList titlelist = document.getElementsByTagName("empmnSj"); // Ã¤¿ëÁ¤º¸È«º¸¸í : Title
+		  NodeList wagelist = document.getElementsByTagName("wageAmount"); // Èñ¸ÁÀÓ±ÝÁ¶°Ç(¿ø)
+		  NodeList careerlist = document.getElementsByTagName("careerYear"); // ÃÖÀú°æ·Â(³â)
+		  NodeList arealist = document.getElementsByTagName("workArea"); // ±Ù¹«Áö¿ª
+		  NodeList area1list = document.getElementsByTagName("workAreaAdres1"); // ±Ù¹«Áö¿ª 1
+		  NodeList area2list = document.getElementsByTagName("workAreaAdres2"); // ±Ù¹«Áö¿ª 2
+		  NodeList insertdatelist = document.getElementsByTagName("rgsde"); // ÇØ´ç Á¤º¸ µî·ÏÀÏ
+		  NodeList LHlist = document.getElementsByTagName("lhCntrwkAt"); // LH°ø»ç¿©ºÎ
 		  
 		  infolist = new ArrayList();
 		  
@@ -83,8 +85,8 @@ public class ApiExplorer {
 			   Node insertdate =  insertdatelist.item(i).getChildNodes().item(0);
 			   Node LH =  LHlist.item(i).getChildNodes().item(0);
 
-			   /* í•´ë‹¹ ì½”ë“œëŠ” api ìžì²´ êµ¬ë™ì„ ìœ„í•´ ì‚¬ìš©ëœ ì½”ë“œ ì‹¤ì œ ìž‘ì—…ì— ì‚¬ìš©í•˜ëŠ” ì½”ë“œê°€ ì•„ë‹˜.
-			    * ì¡°ê±´) ë©”ì†Œë“œê°€ mainì¼ ê²ƒ ìžì²´ javaë¡œ ì‹¤í–‰í•˜ì—¬ ê²°ê³¼ ê°’ í˜¸ì¶œ
+			   /* ÇØ´ç ÄÚµå´Â api ÀÚÃ¼ ±¸µ¿À» À§ÇØ »ç¿ëµÈ ÄÚµå ½ÇÁ¦ ÀÛ¾÷¿¡ »ç¿ëÇÏ´Â ÄÚµå°¡ ¾Æ´Ô.
+			    * Á¶°Ç) ¸Þ¼Òµå°¡ mainÀÏ °Í ÀÚÃ¼ java·Î ½ÇÇàÇÏ¿© °á°ú °ª È£Ãâ
 			   -> public static void main(String[] args) throws Exception {
 			   
 			   System.out.println(num.getNodeName()+"==="+num.getNodeValue());

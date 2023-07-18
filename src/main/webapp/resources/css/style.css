@@ -28,6 +28,14 @@ left: 735px;
 bottom: 370px;
 z-index:2;
     }
+
+div#new{
+position:absolute;
+left: 1630px;
+bottom: 948px;
+z-index:2;
+
+    }
     
 #videoinbackground div button{
 	width: 170px;

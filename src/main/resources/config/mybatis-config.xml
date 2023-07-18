@@ -5,6 +5,6 @@
   
 <configuration>
 	<typeAliases>
-	
+		<typeAlias type="project.spring.build.component.PlanDTO" alias="PlanDTO" />
 	</typeAliases>
 </configuration>

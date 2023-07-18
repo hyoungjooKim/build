@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-Mapper.dtd">
+  
+<mapper namespace="project.spring.build.mapper.HyoungMapper">
+
+<insert id="insertconplan" >
+		insert into conplan(dbnum,dbuser,dblocation,dbdate,dbwork,dbmaxtem,dbmintem,dbrain,dbgpt,dbnote,dbresult)
+		 values(conplan_seq.NEXTVAL,#{dbuser},#{dblocation},#{dbdate},#{dbwork},#{dbmaxtem},#{dbmintem},#{dbrain},#{dbgpt},#{dbnote},'미완료')
+</insert>
+
+<insert id="insertdeplan" >
+		insert into deplan values(deplan_seq.NEXTVAL,#{dbuser},#{dblocation},#{dbaverweather},#{dbgpt},#{dbnote})
+</insert>
+
+<select id="selectconplan" resultType="PlanDTO">
+	<![CDATA[select * from(select e.* , rownum r from(select * from conplan order by dbnum desc)e) where r >=#{startRow} and r <=#{endRow} and dbuser=#{dbuser}]]>
+</select>
+
+<select id="selectdeplan" resultType="PlanDTO">
+	<![CDATA[select * from(select e.* , rownum r from(select * from deplan order by dbnum desc)e) where r >=#{startRow} and r <=#{endRow} and dbuser=#{dbuser}]]>
+</select>
+
+<select id="countconplan" resultType="int">
+	select count(*) from conplan where dbuser=#{dbuser}
+</select>
+
+<select id="countdeplan" resultType="int">
+	select count(*) from deplan where dbuser=#{dbuser}
+</select>
+
+<select id="contentconplan" resultType="PlanDTO">
+	select * from conplan where dbnum=#{dbnum}		 
+</select>
+
+<select id="contentdeplan" resultType="PlanDTO">
+	select * from deplan where dbnum=#{dbnum}		 
+</select>
+
+<delete id="deleteconplan">
+	delete from conplan where dbnum=#{dbnum}
+</delete>
+
+<delete id="deletedeplan">
+	delete from deplan where dbnum=#{dbnum}
+</delete>
+
+<update id="updateconplan">
+	update conplan set dbnote=#{dbnote}, dbresult=#{dbresult} where dbnum=#{dbnum} 
+</update>
+
+<update id="updatedeplan">
+	update deplan set dbnote=#{dbnote} where dbnum=#{dbnum} 
+</update>
+</mapper>

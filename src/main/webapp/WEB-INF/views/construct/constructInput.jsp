@@ -10,7 +10,10 @@
 	<title>시공 공정+날짜 설정 페이지</title>
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+<!--  로딩 css -->
+<link href="/build/resources/css/load.css" rel="stylesheet">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
 .b-example-vr {
 flex-shrink: 0;
@@ -54,12 +57,32 @@ fill: currentColor;
     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
   </symbol>
+  <symbol id="plan" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+  </symbol>
 </svg>
 
 
 
 <%-- "nav-link active" 각각의 페이지 --%>
 <main class="d-flex flex-nowrap">
+
+<%-- lo 스크립트   --%>
+<div id="loadforall" style="position: absolute; display: none; height: 48vw; top: 8px;" >
+<div class="loading-container" style="width: 700px; height: 270px; top: 136px; left: 647px;" id="loading-all">
+    <div class="loading" ></div>
+    <div id="loading-text">loading</div>
+</div>
+</div>
+<script>
+// 현재 페이지에서 다른 페이지로 넘어갈 때 표시해주는 기능
+window.onbeforeunload = function () { 
+// 	$('#loading-all').show();
+	$('#loadforall').show();
+}  
+;
+</script>
+
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
@@ -87,7 +110,12 @@ fill: currentColor;
           채용정보
         </a>
       </li>
-      
+      <li>
+        <a href="/build/myplan?plantype=construction" class="nav-link link-dark">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#plan"/></svg>
+          나의 계획 현황
+        </a>
+      </li>
     </ul>
     <hr>
     <div class="dropdown">
@@ -102,30 +130,32 @@ fill: currentColor;
   
   <div class="container">
   <!-- 여기부터 작업 공간 시작 -->
-  <h1 class="pt-5 text-center">안전지침을 나타내기 전 날짜/공정 설정</h1>
+  <h1 class="pt-5 text-center">시공작업 안전지침을 나타내기 전 날짜/공정 설정</h1>
   <h4 class="pt-3 text-center">원하는 날짜에 있는 텍스트박스 안에 공정을 적어주시기 바랍니다.<br />
   Example: 거푸집 공사, 콘크리트 타설</h4>
   <div class="border border-secondary border-3 text-center pt-3 border-3">
   	<input type="date" id="dateInput1" disabled/>
 <form action="/build/constructOutput" method="get" >
 	<input type="text" name="construct">
+	<input type="hidden" name="location" value="${location}" />
 	<input type="hidden" name="num" value="1">
 	<input type="submit" value="안전지침확인" /><br />
 </form>
 	<input type="date" id="dateInput2" disabled/>
 <form action="/build/constructOutput" method="get" >
 	<input type="text" name="construct">
+	<input type="hidden" name="location" value="${location}" />
 	<input type="hidden" name="num" value="2">
 	<input type="submit" value="안전지침확인" /><br />
 </form>
 	<input type="date" id="dateInput3" disabled/>
 <form action="/build/constructOutput" method="get" >
 	<input type="text" name="construct">
+	<input type="hidden" name="location" value="${location}" />
 	<input type="hidden" name="num" value="3">
 	<input type="submit" value="안전지침확인" /><br />	
 </form>
 </div>
-
 
 <script>
   // Assuming you have received the value of `day1` from the controller

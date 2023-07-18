@@ -20,11 +20,10 @@ import org.xml.sax.InputSource;
 
 public class Apibackup {
 // public class ApiExplorer {
-	// rBnehqdrvX0YOR9pHH95LE%2BQeeTQdBAq1I5yxLO2EoLWxXf8UOSYk88ts0kE3wPcoG9adu3IYTJ625RMftvGlw%3D%3D : 인증키
 	// http://www.cid.or.kr/job/openApi/service/getJobOpenInfoList.do
 	public static void main(String[] args) throws Exception {
 		StringBuilder urlBuilder = new StringBuilder("http://www.cid.or.kr/job/openApi/service/getJobOpenInfoList.do"); /*URL*/
-	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=rBnehqdrvX0YOR9pHH95LE%2BQeeTQdBAq1I5yxLO2EoLWxXf8UOSYk88ts0kE3wPcoG9adu3IYTJ625RMftvGlw%3D%3D"); /*Service Key*/
+	    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=키 넣는 곳"); /*Service Key*/
 	    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));
 	    URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();

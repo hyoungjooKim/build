@@ -29,7 +29,22 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	
+ 
+ 	
+ <error-page>
+    <error-code>404</error-code>
+    <location>/main</location>
+ </error-page>
+ 
+ <error-page>
+    <exception-type>java.lang.RuntimeException</exception-type>
+    <location>/main</location>
+ </error-page>
 
+	
+	
 	<!-- UTF-8 인코딩 설정 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
